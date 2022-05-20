@@ -11,7 +11,6 @@ import { SpecialOffersService } from './special-offers.service';
 export class ProductsService {
 
   constructor(private http: HttpClient, private offers: SpecialOffersService){
-    console.log('Siam passati nel costruttore');
   }
 
   getProducts(): Product[] {
@@ -30,6 +29,10 @@ export class ProductsService {
 
   getProductsFromApi() : Observable<Product[]>  {
     return this.http.get<Product[]>(environment.productsApiUrl);
+  }
+
+  getProductById(id: string) : Observable<Product> {
+    return this.http.get<Product>(environment.productsApiUrl + "/" + id);
   }
 
 }

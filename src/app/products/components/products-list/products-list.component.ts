@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { Product } from '../../product';
 
 @Component({
@@ -8,16 +9,19 @@ import { Product } from '../../product';
 })
 export class ProductsListComponent  {
 
+  constructor(private router: Router) {}
+
   @Input() products: Product[] = [];
-  selectedProduct: Product | undefined = undefined;
+  //selectedProduct: Product | undefined = undefined;
 
   showDetails(selectedProduct: Product) {
-    this.selectedProduct = selectedProduct;
+   // this.selectedProduct = selectedProduct;
+   this.router.navigate(['/products', selectedProduct.id])
   }
 
   listen(message: Product){
-    this.selectedProduct = undefined;
-    console.log(message.id);
+   // this.selectedProduct = undefined;
+  //  console.log(message.id);
   }
 
 

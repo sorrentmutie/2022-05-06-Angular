@@ -12,6 +12,9 @@ import { ProductSpecialPipe } from './products/pipes/product-special.pipe';
 import { ProductDetailsComponent } from './products/components/product-details/product-details.component';
 import { ProductTestComponent } from './products/components/product-test/product-test.component';
 import { RandomUsersComponent } from './randomusers/pages/random-users/random-users.component';
+import { NotFoundComponent } from './shared/not-found/not-found.component';
+import { WelcomeComponent } from './shared/welcome/welcome.component';
+import { MenuComponent } from './shared/menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { RandomUsersComponent } from './randomusers/pages/random-users/random-us
     ProductSpecialPipe,
     ProductDetailsComponent,
     ProductTestComponent,
-    RandomUsersComponent
+    RandomUsersComponent,
+    NotFoundComponent,
+    WelcomeComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

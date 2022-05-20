@@ -1,6 +1,5 @@
 <section *ngIf="products && products.length > 0; else elseBlock" >
 
-<div *ngIf="!selectedProduct; else elseBlock">
 
   <p>Numero totale di prodotti: {{products.length}}</p>
 
@@ -37,12 +36,12 @@
 
   </table>
 
-</div>
 
 
-<ng-template #elseBlock>
+
+<!-- <ng-template #elseBlock>
   <app-product-details  (productEmitter)="listen($event)"  [product]="selectedProduct"></app-product-details>
-</ng-template>
+</ng-template> -->
 
 
 </section>
