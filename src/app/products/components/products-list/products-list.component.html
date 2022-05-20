@@ -1,6 +1,7 @@
-
-
 <section *ngIf="products && products.length > 0; else elseBlock" >
+
+<div *ngIf="!selectedProduct; else elseBlock">
+
   <p>Numero totale di prodotti: {{products.length}}</p>
 
   <table class="table table-striped table-bordered table-hover">
@@ -13,6 +14,7 @@
         <th>Data</th>
         <th>Immagine</th>
         <th>x </th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -27,10 +29,20 @@
         <td>
           {{product | productSpecial}}
         </td>
+        <td>
+          <button (click)="showDetails(product)" class="btn btn-success">Visualizza</button>
+        </td>
       </tr>
     </tbody>
 
   </table>
+
+</div>
+
+
+<ng-template #elseBlock>
+  <app-product-details  (productEmitter)="listen($event)"  [product]="selectedProduct"></app-product-details>
+</ng-template>
 
 
 </section>

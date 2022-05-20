@@ -1,3 +1,10 @@
 <p>products-page works!</p>
 <h3>Lista dei prodotti in offerta speciale</h3>
-<app-products-list></app-products-list>
+<app-products-list [products]="specialOfferProducts"  ></app-products-list>
+
+<!-- <h3>Prodotti da riordinare</h3>
+<app-products-list [products]="reorderProducts"  ></app-products-list> -->
+
+
+<app-product-test [value]="value"  [value2] ="value2" ></app-product-test>
+<button (click)="changeValue()">Cambia valore</button>

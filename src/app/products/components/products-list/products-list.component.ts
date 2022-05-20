@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Product } from '../../product';
 
 @Component({
@@ -8,19 +8,18 @@ import { Product } from '../../product';
 })
 export class ProductsListComponent  {
 
-  products: Product[] = [];
-  constructor() {
-    this.products = this.getProducts();
-   }
+  @Input() products: Product[] = [];
+  selectedProduct: Product | undefined = undefined;
 
-  getProducts(): Product[] {
-    const products: Product[] = [
-      {id: 1, name: "Frigorifero",
-      price: 800, description: 'classe AAA', releaseDate: new Date(), image: "https://th.bing.com/th/id/OIP.qEZnrWcytrn3GH4phNhzcAHaHa?pid=ImgDet&rs=1"},
-      {id: 2, name: "Frigorifero Speciale",
-      price: 1800, description: 'classe DDD', releaseDate: new Date(), image: "https://th.bing.com/th/id/OIP.qEZnrWcytrn3GH4phNhzcAHaHa?pid=ImgDet&rs=1"},
-    ];
-    return products;
+  showDetails(selectedProduct: Product) {
+    this.selectedProduct = selectedProduct;
   }
+
+  listen(message: Product){
+    this.selectedProduct = undefined;
+    console.log(message.id);
+  }
+
+
 
 }

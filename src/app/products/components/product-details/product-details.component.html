@@ -1,0 +1,11 @@
+
+<article *ngIf="product">
+
+<div class="form-group">
+
+  <label for="nome">Nome </label>
+  <input id="nome" name="nome" [(ngModel)]="product.name" class="formcontrol" type="text">
+</div>
+
+  <button class="btn btn-info" (click)="back()"> Torna Indietro</button>
+</article>
