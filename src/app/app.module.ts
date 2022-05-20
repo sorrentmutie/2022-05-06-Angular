@@ -15,6 +15,8 @@ import { RandomUsersComponent } from './randomusers/pages/random-users/random-us
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { WelcomeComponent } from './shared/welcome/welcome.component';
 import { MenuComponent } from './shared/menu/menu.component';
+import { ProveComponent } from './shared/prove/prove.component';
+import { HeroFormComponent } from './hero/components/hero-form/hero-form.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { MenuComponent } from './shared/menu/menu.component';
     RandomUsersComponent,
     NotFoundComponent,
     WelcomeComponent,
-    MenuComponent
+    MenuComponent,
+    ProveComponent,
+    HeroFormComponent
   ],
   imports: [
     BrowserModule,

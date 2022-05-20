@@ -1,0 +1,39 @@
+<h3>Il form dell'eroe</h3>
+
+<form #myForm="ngForm" (ngSubmit)="submit()">
+
+
+
+  <div class="form-group">
+    <label for="nome" class="form-label mt-4">Nome</label>
+    <input #myName="ngModel"  type="text" [(ngModel)]="hero.name"
+    id="nome" name="nome" required class="form-control" id="nome"
+    placeholder="Enter name"  minlength="3"/>
+
+    <!-- <div [hidden]="myName.valid || myName.pristine" class="alert alert-danger">Il nome è obbligatorio</div> -->
+    <div *ngIf="myName.invalid && (myName.dirty || myName.touched)">
+      <div *ngIf="myName && myName.errors && myName.errors['required']" class="alert alert-danger">Il nome è obbligatorio</div>
+      <div *ngIf="myName && myName.errors && myName.errors['minlength']" class="alert alert-warning">La lunghezza minima è 3</div>
+    </div>
+
+
+
+  </div>
+
+
+  <div class="form-group">
+    <label for="alterEgo" class="form-label mt-4">Alter Ego</label>
+    <input type="text" [(ngModel)]="hero.alterEgo"  id="alterEgo" name="alterEgo" class="form-control" id="nome" placeholder="Enter Alter ego">
+  </div>
+
+  <div class="form-group">
+    <label for="superpower" class="form-label mt-4">Super Potere</label>
+    <select id="superpower" [(ngModel)]="hero.power" name="superpower" class="form-control">
+      <option *ngFor="let p of powers" [value]="p">{{p}}</option>
+    </select>
+  </div>
+
+
+  <button [disabled]="!myForm.valid" type="submit" class="btn btn-success mt-3">OK</button>
+
+</form>
