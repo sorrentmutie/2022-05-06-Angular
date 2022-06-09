@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { catchError, from, map, of, retry } from 'rxjs';
 
 @Component({
   selector: 'app-prove',
@@ -7,7 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProveComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+
+    const srcArray = from([1,2,'A',4,8]);
+    srcArray.pipe(
+      map(valore => {
+        let result = valore as number * 3;
+        if(Number.isNaN(result)) {
+           console.log('Errore di calcolo');
+           throw new Error('Errore grave di calcolo');
+        }
+        return result;
+      }),
+      retry(2)
+      , catchError(error => {
+        return of(0);
+      })
+    ).subscribe( v => console.log(v));
+
+  }
 
   ngOnInit(): void {
   }

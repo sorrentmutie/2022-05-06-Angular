@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FirstComponent } from './shared/first/first.component';
@@ -18,6 +18,11 @@ import { MenuComponent } from './shared/menu/menu.component';
 import { ProveComponent } from './shared/prove/prove.component';
 import { HeroFormComponent } from './hero/components/hero-form/hero-form.component';
 import { HeroReactiveComponent} from './hero/components/hero-form/hero-reactive.component';
+import { FirstInterceptor } from './shared/interceptors/first.interceptor';
+import { SecondInterceptor } from './shared/interceptors/second.interceptor';
+import { ProvaSubjectComponent } from './shared/prove/prova-subject/prova-subject.component';
+import { ProvaObservableServiceComponent } from './shared/prove/prova-observable-service/prova-observable-service.component';
+import { ProvaEventBusComponent } from './shared/prove/prova-event-bus/prova-event-bus.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +40,10 @@ import { HeroReactiveComponent} from './hero/components/hero-form/hero-reactive.
     MenuComponent,
     ProveComponent,
     HeroFormComponent,
-    HeroReactiveComponent
+    HeroReactiveComponent,
+    ProvaSubjectComponent,
+    ProvaObservableServiceComponent,
+    ProvaEventBusComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +51,10 @@ import { HeroReactiveComponent} from './hero/components/hero-form/hero-reactive.
     FormsModule, ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: FirstInterceptor, multi: true },
+    {provide: HTTP_INTERCEPTORS, useClass: SecondInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
