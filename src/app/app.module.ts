@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +17,7 @@ import { WelcomeComponent } from './shared/welcome/welcome.component';
 import { MenuComponent } from './shared/menu/menu.component';
 import { ProveComponent } from './shared/prove/prove.component';
 import { HeroFormComponent } from './hero/components/hero-form/hero-form.component';
+import { HeroReactiveComponent} from './hero/components/hero-form/hero-reactive.component';
 
 @NgModule({
   declarations: [
@@ -33,12 +34,13 @@ import { HeroFormComponent } from './hero/components/hero-form/hero-form.compone
     WelcomeComponent,
     MenuComponent,
     ProveComponent,
-    HeroFormComponent
+    HeroFormComponent,
+    HeroReactiveComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
+    FormsModule, ReactiveFormsModule,
     HttpClientModule
   ],
   providers: [],

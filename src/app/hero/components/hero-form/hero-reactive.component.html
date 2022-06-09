@@ -1,0 +1,57 @@
+<p>hero-reactive works!</p>
+
+<!--
+<input type="text" [formControl]="myControl">
+
+<button (click)="change()">Cambia</button>
+
+
+<p>  {{myControl.value}}</p>
+
+<p>  {{myObservable | async}} </p>
+
+-->
+
+<form *ngIf="myForm" [formGroup]="myForm" (ngSubmit)="submit()">
+
+  <div class="form-group">
+    <label for="firstName" class="form-label mt-4">Nome</label>
+    <input id="firstName" formControlName="firstName"  class="form-control">
+
+    <div *ngIf="nome?.invalid && (nome?.dirty || nome?.touched)">
+
+      <div class="alert alert-danger" *ngIf="nome && nome.errors && nome.errors['required']">
+        Nome obbligatorio
+      </div>
+
+      <div class="alert alert-danger" *ngIf="nome && nome.errors && nome.errors['minlength']">
+        Lunghezza minima: 4
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+
+  <div class="form-group">
+    <label for="lastName" class="form-label mt-4">Cognome</label>
+    <input id="lastName" formControlName="lastName" class="form-control">
+
+
+    <div *ngIf="cognome?.invalid && (cognome?.dirty || cognome?.touched)">
+
+      <div class="alert alert-danger" *ngIf="cognome && cognome.errors && cognome.errors['myValidator']">
+       Deve iniziare con sal!
+      </div>
+
+    </div>
+
+
+  </div>
+
+  <button type="submit" [disabled]="!myForm.valid" class="btn btn-success">OK</button>
+
+
+</form>
