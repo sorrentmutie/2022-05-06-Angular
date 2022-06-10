@@ -23,7 +23,8 @@ import { SecondInterceptor } from './shared/interceptors/second.interceptor';
 import { ProvaSubjectComponent } from './shared/prove/prova-subject/prova-subject.component';
 import { ProvaObservableServiceComponent } from './shared/prove/prova-observable-service/prova-observable-service.component';
 import { ProvaEventBusComponent } from './shared/prove/prova-event-bus/prova-event-bus.component';
-
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from  '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +50,9 @@ import { ProvaEventBusComponent } from './shared/prove/prova-event-bus/prova-eve
     BrowserModule,
     AppRoutingModule,
     FormsModule, ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: FirstInterceptor, multi: true },

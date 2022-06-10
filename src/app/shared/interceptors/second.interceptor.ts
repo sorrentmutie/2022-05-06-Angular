@@ -7,30 +7,31 @@ import {
   HttpResponse,
   HttpErrorResponse
 } from '@angular/common/http';
-import { catchError, map, Observable, of, tap, throwError } from 'rxjs';
+import { catchError, Observable, tap, throwError } from 'rxjs';
+import { EventBusService } from '../services/event-bus.service';
+import { ApplicationEvents } from '../services/application-events';
+import { EmitEvent } from '../services/emit-event';
 
 @Injectable()
 export class SecondInterceptor implements HttpInterceptor {
 
-  constructor() {}
+  constructor(private eventBus: EventBusService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    console.log("Second Interceptor");
-    console.log(request);
     return next.handle(request).pipe(
       tap(  (event: HttpEvent<unknown>) => {
         if(event instanceof HttpResponse) {
-          console.log('event......');
-          console.log(event);
+          this.eventBus.emit(new EmitEvent(
+            ApplicationEvents.Http200StatusCode, {prova: Math.random().toString()}
+          ));
         }
       }),
       catchError( (error: HttpErrorResponse) => {
-         console.log('Sono in catchError');
-         console.log(error);
-         const data = { status: error.status, reason: "Spiegazione errore" };
-       //  return throwError(() => data)
-         return of();
 
+        this.eventBus.emit(new EmitEvent(
+          ApplicationEvents.Http500StatusCode, {prova: "Errore"}
+        ));
+         return throwError(() => new Error('Errore!!!'))
       })
     );
   }

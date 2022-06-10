@@ -1,0 +1,21 @@
+{
+    "redisXplorer.config": {
+        "profiles": [
+            {
+                "name": "competitions",
+                "host": "localhost",
+                "accessKey": "",
+                "filter": "*",
+                "port": "6379"
+            },
+            {
+                "name": "m",
+                "host": "localhost",
+                "accessKey": "",
+                "filter": "*",
+                "port": "6379"
+            }
+        ],
+        "scanLimit": 200
+    }
+}

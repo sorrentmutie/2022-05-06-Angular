@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  productsApiUrl: 'http://localhost:7000/products',
+  productsApiUrl: 'http://localhost:9000/products',
   randomusersUrl: 'https://randomuser.me/api?results='
 };
 

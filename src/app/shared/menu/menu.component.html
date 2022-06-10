@@ -21,6 +21,9 @@
         <li *ngIf="lastCustomer" class="nav-item">
           <a class="nav-link" routerLink="/products">{{lastCustomer.name}}</a>
         </li>
+        <li *ngIf="data" class="nav-item">
+          <a class="nav-link" routerLink="/products">{{data.prova}}</a>
+        </li>
       </ul>
 
     </div>
