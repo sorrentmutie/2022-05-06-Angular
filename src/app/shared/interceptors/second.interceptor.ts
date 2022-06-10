@@ -22,14 +22,14 @@ export class SecondInterceptor implements HttpInterceptor {
       tap(  (event: HttpEvent<unknown>) => {
         if(event instanceof HttpResponse) {
           this.eventBus.emit(new EmitEvent(
-            ApplicationEvents.Http200StatusCode, {prova: Math.random().toString()}
+            ApplicationEvents.HttpNotification, { statusCode: 200, message: "Tutto ok"}
           ));
         }
       }),
       catchError( (error: HttpErrorResponse) => {
-
+        console.log(error);
         this.eventBus.emit(new EmitEvent(
-          ApplicationEvents.Http500StatusCode, {prova: "Errore"}
+          ApplicationEvents.HttpNotification, { statusCode: error.status, message: "Errore"}
         ));
          return throwError(() => new Error('Errore!!!'))
       })

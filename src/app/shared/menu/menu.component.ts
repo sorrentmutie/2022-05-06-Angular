@@ -6,6 +6,7 @@ import { CustomersSubjectService } from '../services/customers-subject.service';
 import { CustomersService } from '../services/customers.service';
 import { EventBusService } from '../services/event-bus.service';
 import { ToastrService } from 'ngx-toastr';
+import { Toastr } from '../models/toastr';
 
 @Component({
   selector: 'app-menu',
@@ -24,7 +25,6 @@ export class MenuComponent implements OnDestroy {
   constructor(private service: CustomersSubjectService,
     private observableService: CustomersService,
     private eventBus: EventBusService,private toastr: ToastrService) {
-      this.toastr.success('Hello world!', 'Toastr fun!');
       this.subscription = this.service.customersObservable$?.subscribe(
       newCustomer => this.lastCustomer = newCustomer
     );
@@ -32,9 +32,18 @@ export class MenuComponent implements OnDestroy {
       ?.subscribe( customer => this.lastCustomer = customer);
 
     this.eventBusSubscription =  this.eventBus.on(
-     ApplicationEvents.Http200StatusCode,  (data: any) => {
-        this.toastr.warning('Hello world!', 'Toastr fun!');
-        this.lastCustomer = this.data = data
+     ApplicationEvents.HttpNotification,  (data: Toastr) => {
+        switch(data.statusCode) {
+          case 200:
+            this.toastr.success(data.message, "Ok");
+            break;
+          case 0:
+            this.toastr.error(data.message, "Indirizzo errato");
+            break;
+          case 404:
+            this.toastr.warning(data.message, "Servizio non disponibile");
+            break;
+        }
      })
 
    }
