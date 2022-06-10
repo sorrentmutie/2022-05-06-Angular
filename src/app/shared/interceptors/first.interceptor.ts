@@ -14,7 +14,6 @@ export class FirstInterceptor implements HttpInterceptor {
   token = "xxxxxxxx";
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    console.log(request);
 
     let clonedRequest = request.clone({
       setHeaders: {Authorization: `Bearer ${this.token}`, Accept: 'json'}
@@ -28,7 +27,6 @@ export class FirstInterceptor implements HttpInterceptor {
 
    return next.handle(clonedRequest).pipe(
      tap( (event: HttpEvent<unknown>) => {
-       console.log('sono nella response del primo interceptor');
      })
    );
 

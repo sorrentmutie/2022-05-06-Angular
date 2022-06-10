@@ -27,7 +27,6 @@ export class SecondInterceptor implements HttpInterceptor {
         }
       }),
       catchError( (error: HttpErrorResponse) => {
-        console.log(error);
         this.eventBus.emit(new EmitEvent(
           ApplicationEvents.HttpNotification, { statusCode: error.status, message: "Errore"}
         ));
